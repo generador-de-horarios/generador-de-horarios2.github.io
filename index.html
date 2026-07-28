@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' http://localhost:3000; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'" />
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- theme-color por esquema, coherente con el toggle data-mode de uiStore. -->
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#08090C" />
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#F3F1F8" />
+    <!-- iOS lee el ícono de acá, NO del manifest (ignora los íconos SVG). -->
+    <link rel="apple-touch-icon" href="/apple-touch-icon-180x180.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Generador de horarios" />
+    <!-- Fuentes self-hosted (@font-face en style.css). Se precargan las del
+         subset latin, que son las que se usan siempre. -->
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/space-grotesk-latin.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/inter-latin.woff2" crossorigin />
+    <title>Generador de horarios</title>
+    <script type="module" crossorigin src="/assets/index-PqSUrxcd.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-BlEHVSHy.css">
+  <link rel="manifest" href="/manifest.webmanifest"></head>
+  <body>
+    <h1 class="sr-only">
+      Generador de horarios: página principal con horarios agrupados y miniaturas, y
+      un editor de horario individual con configuración de días, rango de horas,
+      duración de lecciones/descansos y formato de hora.
+    </h1>
+    <div id="app"></div>
+  </body>
+</html>
