@@ -17,6 +17,10 @@
          subset latin, que son las que se usan siempre. -->
     <link rel="preload" as="font" type="font/woff2" href="/fonts/space-grotesk-latin.woff2" crossorigin />
     <link rel="preload" as="font" type="font/woff2" href="/fonts/inter-latin.woff2" crossorigin />
+    <!-- GA4 se carga diferido (lib/analytics.ts#loadGtag, requestIdleCallback),
+         pero el DNS/TLS de Google Tag Manager conviene resolverlos ya: para
+         cuando el idle callback dispare, la conexión ya está lista. -->
+    <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
 
     <!--
       TODO EL BLOQUE ENTRE `seo:start` y `seo:end` LO REGENERA EL POSTBUILD.
@@ -39,8 +43,10 @@
     <title>Página no encontrada — Generador de horarios</title>
     <meta name="robots" content="noindex,follow" />
     <!-- seo:end -->
-    <script type="module" crossorigin src="/assets/index-CWuDe9Sp.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-Dq2K2ADp.css">
+    <script type="module" crossorigin src="/assets/index-CvbR9Ryr.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/vendor-vue-DPrhrHZ-.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-db-SYSzWNrB.js">
+    <link rel="stylesheet" crossorigin href="/assets/index-D7rYS_At.css">
   <link rel="manifest" href="/manifest.webmanifest"></head>
   <body>
     <div id="app"></div>

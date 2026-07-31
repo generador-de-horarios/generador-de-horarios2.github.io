@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
   <head>
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-dy3XLmKWvthRRga5Ygyqnboq9965AwIWTRvuaNJKZ58=' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://*.google-analytics.com https://www.googletagmanager.com; font-src 'self'; connect-src 'self' http://localhost:3000 https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; frame-src https://docs.google.com" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-cD/0/diHRLK9GPsEvASwAIE4ETfBbAM2ddQ2WuGyRtk=' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://*.google-analytics.com https://www.googletagmanager.com; font-src 'self'; connect-src 'self' http://localhost:3000 https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; frame-src https://docs.google.com" />
     <meta charset="UTF-8" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -17,6 +17,10 @@
          subset latin, que son las que se usan siempre. -->
     <link rel="preload" as="font" type="font/woff2" href="/fonts/space-grotesk-latin.woff2" crossorigin />
     <link rel="preload" as="font" type="font/woff2" href="/fonts/inter-latin.woff2" crossorigin />
+    <!-- GA4 se carga diferido (lib/analytics.ts#loadGtag, requestIdleCallback),
+         pero el DNS/TLS de Google Tag Manager conviene resolverlos ya: para
+         cuando el idle callback dispare, la conexión ya está lista. -->
+    <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
 
     <!--
       TODO EL BLOQUE ENTRE `seo:start` y `seo:end` LO REGENERA EL POSTBUILD.
@@ -37,15 +41,15 @@
     -->
     <!-- seo:start -->
     <title>Generador de horarios de clases — gratis, sin cuenta y offline</title>
-    <meta name="description" content="Armá y compará tus horarios de clases en minutos: arrastrá los cursos, detectá los choques de hora y guardá todo en tu dispositivo. Gratis y sin cuenta." />
+    <meta name="description" content="El generador de horarios de estudiantes de la UCR: armá tu semana, evitá choques de horario y guardá todo en tu dispositivo. Gratis y sin cuenta." />
     <link rel="canonical" href="https://generador-de-horarios.coldideas.com/" />
     <meta name="robots" content="index,follow,max-image-preview:large" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Generador de horarios" />
     <meta property="og:locale" content="es_LA" />
     <meta property="og:url" content="https://generador-de-horarios.coldideas.com/" />
-    <meta property="og:title" content="Armá tu horario de clases en minutos" />
-    <meta property="og:description" content="Armá y compará tus horarios de clases en minutos: arrastrá los cursos, detectá los choques de hora y guardá todo en tu dispositivo. Gratis y sin cuenta." />
+    <meta property="og:title" content="El generador de horarios de la UCR" />
+    <meta property="og:description" content="El generador de horarios de estudiantes de la UCR: armá tu semana, evitá choques de horario y guardá todo en tu dispositivo. Gratis y sin cuenta." />
     <meta property="og:image" content="https://generador-de-horarios.coldideas.com/og-cover-v1.png" />
     <meta property="og:image:secure_url" content="https://generador-de-horarios.coldideas.com/og-cover-v1.png" />
     <meta property="og:image:type" content="image/png" />
@@ -57,14 +61,16 @@
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="1200" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Armá tu horario de clases en minutos" />
-    <meta name="twitter:description" content="Armá y compará tus horarios de clases en minutos: arrastrá los cursos, detectá los choques de hora y guardá todo en tu dispositivo. Gratis y sin cuenta." />
+    <meta name="twitter:title" content="El generador de horarios de la UCR" />
+    <meta name="twitter:description" content="El generador de horarios de estudiantes de la UCR: armá tu semana, evitá choques de horario y guardá todo en tu dispositivo. Gratis y sin cuenta." />
     <meta name="twitter:image" content="https://generador-de-horarios.coldideas.com/og-cover-v1.png" />
     <meta name="twitter:image:alt" content="Un horario semanal de clases con los cursos en bloques de color, en la app Generador de horarios." />
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Generador de horarios","url":"https://generador-de-horarios.coldideas.com/","description":"Armá y compará tus horarios de clases en minutos: arrastrá los cursos, detectá los choques de hora y guardá todo en tu dispositivo. Gratis y sin cuenta.","applicationCategory":"EducationalApplication","operatingSystem":"Cualquiera (navegador web, instalable como PWA)","browserRequirements":"Requiere JavaScript e IndexedDB","inLanguage":"es","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"screenshot":"https://generador-de-horarios.coldideas.com/og-cover-v1.png","featureList":["Armar horarios semanales arrastrando los cursos sobre una grilla","Detección de choques de hora con reacomodo automático","Varios horarios agrupados para comparar alternativas de matrícula","Catálogo de cursos de pregrado de la Universidad de Costa Rica","Exportar a PNG y CSV","Funciona sin conexión e instalable como aplicación"]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Generador de horarios","url":"https://generador-de-horarios.coldideas.com/","description":"El generador de horarios de estudiantes de la UCR: armá tu semana, evitá choques de horario y guardá todo en tu dispositivo. Gratis y sin cuenta.","applicationCategory":"EducationalApplication","operatingSystem":"Cualquiera (navegador web, instalable como PWA)","browserRequirements":"Requiere JavaScript e IndexedDB","inLanguage":"es","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"screenshot":"https://generador-de-horarios.coldideas.com/og-cover-v1.png","featureList":["Armar horarios semanales arrastrando los cursos sobre una grilla","Detección de choques de hora con reacomodo automático","Varios horarios agrupados para comparar alternativas de matrícula","Catálogo de cursos de pregrado de la Universidad de Costa Rica","Exportar a PNG y CSV","Funciona sin conexión e instalable como aplicación"]}</script>
     <!-- seo:end -->
-    <script type="module" crossorigin src="/assets/index-CWuDe9Sp.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-Dq2K2ADp.css">
+    <script type="module" crossorigin src="/assets/index-CvbR9Ryr.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/vendor-vue-DPrhrHZ-.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-db-SYSzWNrB.js">
+    <link rel="stylesheet" crossorigin href="/assets/index-D7rYS_At.css">
   <link rel="manifest" href="/manifest.webmanifest"></head>
   <body>
     <div id="app"></div>
@@ -80,6 +86,6 @@
       que cada vista ya renderiza (`HomeView` "Mis horarios", `HelpView` el
       título del tema…).
     -->
-    <div id="prerender"><!-- prerender:start --><h1>Generador de horarios de clases</h1><p>Armá tu horario semanal arrastrando los cursos sobre una grilla: elegí qué días te sirven, el rango de horas y cuánto dura cada lección. Cuando dos cursos se pisan, la app te avisa y puede reacomodar el nuevo al hueco libre más cercano.</p><p>Funciona sin internet y sin crear una cuenta. Todo lo que armás se guarda en tu propio dispositivo, y podés instalar la app desde el navegador para abrirla como cualquier otra.</p><p>Al escribir el nombre de un curso, el buscador te propone coincidencias del catálogo de cursos de pregrado de la Universidad de Costa Rica (UCR), con la sigla y los créditos ya cargados.</p><h2>Qué podés hacer</h2><ul><li>Crear varios horarios y agruparlos para comparar alternativas de matrícula.</li><li>Repetir un mismo curso en varios días, o darle horas distintas en cada día.</li><li>Anotar sigla, profesor, aula, créditos y número de grupo en cada curso.</li><li>Ajustar días visibles, franja horaria, duración de lección y descanso.</li><li>Exportar cualquier horario como imagen PNG o como CSV para abrirlo en Excel.</li><li>Usar la app en modo claro u oscuro, desde el teléfono o la computadora.</li></ul><!-- prerender:end --></div>
+    <div id="prerender"><!-- prerender:start --><h1>Generador de horarios de clases</h1><p>Es el generador de horarios creado por y para estudiantes de la Universidad de Costa Rica (UCR), y lo puede usar cualquier persona que arme un horario de clases, curse donde curse. Al escribir el nombre de un curso, el buscador propone coincidencias del catálogo de cursos de pregrado de la UCR, con la sigla y los créditos ya cargados.</p><p>Armá tu horario semanal arrastrando los cursos sobre una grilla: elegí qué días te sirven, el rango de horas y cuánto dura cada lección. Cuando dos cursos se pisan, la app te avisa y puede reacomodar el nuevo al hueco libre más cercano.</p><p>Funciona sin internet y sin crear una cuenta. Todo lo que armás se guarda en tu propio dispositivo, y podés instalar la app desde el navegador para abrirla como cualquier otra.</p><h2>Qué podés hacer</h2><ul><li>Crear varios horarios y agruparlos para comparar alternativas de matrícula.</li><li>Repetir un mismo curso en varios días, o darle horas distintas en cada día.</li><li>Anotar sigla, profesor, aula, créditos y número de grupo en cada curso.</li><li>Ajustar días visibles, franja horaria, duración de lección y descanso.</li><li>Exportar cualquier horario como imagen PNG o como CSV para abrirlo en Excel.</li><li>Usar la app en modo claro u oscuro, desde el teléfono o la computadora.</li></ul><!-- prerender:end --></div>
   </body>
 </html>

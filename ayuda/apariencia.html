@@ -17,6 +17,10 @@
          subset latin, que son las que se usan siempre. -->
     <link rel="preload" as="font" type="font/woff2" href="/fonts/space-grotesk-latin.woff2" crossorigin />
     <link rel="preload" as="font" type="font/woff2" href="/fonts/inter-latin.woff2" crossorigin />
+    <!-- GA4 se carga diferido (lib/analytics.ts#loadGtag, requestIdleCallback),
+         pero el DNS/TLS de Google Tag Manager conviene resolverlos ya: para
+         cuando el idle callback dispare, la conexión ya está lista. -->
+    <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
 
     <!--
       TODO EL BLOQUE ENTRE `seo:start` y `seo:end` LO REGENERA EL POSTBUILD.
@@ -63,8 +67,10 @@
     <meta name="twitter:image:alt" content="Un horario semanal de clases con los cursos en bloques de color, en la app Generador de horarios." />
     <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"TechArticle","@id":"https://generador-de-horarios.coldideas.com/ayuda/apariencia#article","headline":"Opciones generales","description":"Modo claro u oscuro, fondo animado, medición de uso y dónde encontrar estas opciones.","url":"https://generador-de-horarios.coldideas.com/ayuda/apariencia","inLanguage":"es","isPartOf":{"@type":"WebSite","name":"Generador de horarios","url":"https://generador-de-horarios.coldideas.com/"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://generador-de-horarios.coldideas.com/"},{"@type":"ListItem","position":2,"name":"Ayuda","item":"https://generador-de-horarios.coldideas.com/ayuda"},{"@type":"ListItem","position":3,"name":"Opciones generales","item":"https://generador-de-horarios.coldideas.com/ayuda/apariencia"}]}]}</script>
     <!-- seo:end -->
-    <script type="module" crossorigin src="/assets/index-CWuDe9Sp.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-Dq2K2ADp.css">
+    <script type="module" crossorigin src="/assets/index-CvbR9Ryr.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/vendor-vue-DPrhrHZ-.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-db-SYSzWNrB.js">
+    <link rel="stylesheet" crossorigin href="/assets/index-D7rYS_At.css">
   <link rel="manifest" href="/manifest.webmanifest"></head>
   <body>
     <div id="app"></div>
