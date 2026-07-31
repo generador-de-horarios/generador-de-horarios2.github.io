@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-dNm1jYjSdrW436nrZqAD3CCQcp5dHqqN7cEvnw+TO3I=' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://*.google-analytics.com https://www.googletagmanager.com; font-src 'self'; connect-src 'self' http://localhost:3000 https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; frame-src https://docs.google.com" />
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- theme-color por esquema, coherente con el toggle data-mode de uiStore. -->
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#08090C" />
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#F3F1F8" />
+    <!-- iOS lee el ícono de acá, NO del manifest (ignora los íconos SVG). -->
+    <link rel="apple-touch-icon" href="/apple-touch-icon-180x180.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Generador de horarios" />
+    <!-- Fuentes self-hosted (@font-face en style.css). Se precargan las del
+         subset latin, que son las que se usan siempre. -->
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/space-grotesk-latin.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/inter-latin.woff2" crossorigin />
+
+    <!--
+      TODO EL BLOQUE ENTRE `seo:start` y `seo:end` LO REGENERA EL POSTBUILD.
+
+      `tools/seo/emit-pages.mjs` lo reemplaza completo, en `index.html` y en cada
+      página derivada, a partir de `src/lib/seoMeta.ts` — esa es la fuente de
+      verdad del copy. Lo que hay acá abajo es el valor del home, y sirve de red
+      por si alguien corre `vite build` sin el postbuild; si difiere de
+      `seoMeta.ts`, gana `seoMeta.ts`.
+
+      Los marcadores son comentarios y no atributos porque el reemplazo tiene que
+      ser de un bloque entero: parchear tag por tag con regex es exactamente cómo
+      se termina con un `og:description` del home en una página de ayuda.
+
+      `https://generador-de-horarios.coldideas.com` lo sustituye Vite en el build (ver `.env`). Ninguna de
+      estas URLs puede ser relativa: `og:image` relativa es la causa nº1 de
+      tarjeta social sin imagen.
+    -->
+    <!-- seo:start -->
+    <title>Parámetros del horario · Ayuda — Generador de horarios</title>
+    <meta name="description" content="Bloques fijos u horas libres, días visibles, franja horaria, formato de hora y modo de conflicto — de un horario en particular." />
+    <link rel="canonical" href="https://generador-de-horarios.coldideas.com/ayuda/horario-params" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Generador de horarios" />
+    <meta property="og:locale" content="es_LA" />
+    <meta property="og:url" content="https://generador-de-horarios.coldideas.com/ayuda/horario-params" />
+    <meta property="og:title" content="Parámetros del horario" />
+    <meta property="og:description" content="Bloques fijos u horas libres, días visibles, franja horaria, formato de hora y modo de conflicto — de un horario en particular." />
+    <meta property="og:image" content="https://generador-de-horarios.coldideas.com/og-cover-v1.png" />
+    <meta property="og:image:secure_url" content="https://generador-de-horarios.coldideas.com/og-cover-v1.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Un horario semanal de clases con los cursos en bloques de color, en la app Generador de horarios." />
+    <meta property="og:image" content="https://generador-de-horarios.coldideas.com/og-square-v1.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="1200" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Parámetros del horario" />
+    <meta name="twitter:description" content="Bloques fijos u horas libres, días visibles, franja horaria, formato de hora y modo de conflicto — de un horario en particular." />
+    <meta name="twitter:image" content="https://generador-de-horarios.coldideas.com/og-cover-v1.png" />
+    <meta name="twitter:image:alt" content="Un horario semanal de clases con los cursos en bloques de color, en la app Generador de horarios." />
+    <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"TechArticle","@id":"https://generador-de-horarios.coldideas.com/ayuda/horario-params#article","headline":"Parámetros del horario","description":"Bloques fijos u horas libres, días visibles, franja horaria, formato de hora y modo de conflicto — de un horario en particular.","url":"https://generador-de-horarios.coldideas.com/ayuda/horario-params","inLanguage":"es","isPartOf":{"@type":"WebSite","name":"Generador de horarios","url":"https://generador-de-horarios.coldideas.com/"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://generador-de-horarios.coldideas.com/"},{"@type":"ListItem","position":2,"name":"Ayuda","item":"https://generador-de-horarios.coldideas.com/ayuda"},{"@type":"ListItem","position":3,"name":"Parámetros del horario","item":"https://generador-de-horarios.coldideas.com/ayuda/horario-params"}]}]}</script>
+    <!-- seo:end -->
+    <script type="module" crossorigin src="/assets/index-CWuDe9Sp.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-Dq2K2ADp.css">
+  <link rel="manifest" href="/manifest.webmanifest"></head>
+  <body>
+    <div id="app"></div>
+    <!--
+      Contenido estático que hornea el postbuild (`#app:not(:empty) + #prerender`
+      lo esconde en cuanto Vue monta, ver `style.css`). Es lo ÚNICO que ve un
+      crawler que no ejecuta JavaScript, y lo primero que ve un humano con la red
+      lenta. Va vacío en el fuente a propósito: el copy vive en `seoMeta.ts` y en
+      `helpContent.ts`, duplicarlo acá sería una segunda fuente de verdad.
+
+      Reemplaza al `<h1 class="sr-only">` que estaba acá: describía dos pantallas
+      en una sola oración, se repetía en todas las rutas y DUPLICABA el `<h1>`
+      que cada vista ya renderiza (`HomeView` "Mis horarios", `HelpView` el
+      título del tema…).
+    -->
+    <div id="prerender"><!-- prerender:start --><h1>Parámetros del horario</h1><p>Bloques fijos u horas libres, días visibles, franja horaria, formato de hora y modo de conflicto — de un horario en particular.</p><section id="abrir"><h2>Cómo abrirlos</h2><ol><li><strong>Abrí el horario que querés ajustar</strong></li><li><strong>Tocá el menú «⋯» junto al nombre del horario</strong> Está a la derecha del título, ya dentro del editor. Elegí «Configurar horario»: se abre el panel «Configuración del horario».</li><li><strong>Ajustá lo que necesites y tocá «Guardar»</strong> Mientras cambiás valores, abajo se te adelanta cuántos bloques por día va a tener la tabla.</li></ol><dl><dt>Configurar horario</dt><dd><em>Editor · menú «⋯» junto al nombre del horario</em> — Abre los parámetros DEL horario abierto.</dd></dl><aside class="note note--warning">Estos ajustes valen solo para el horario que tenés abierto. La configuración global (la plantilla de horarios nuevos) vive en el menú «⋯» de la barra superior: ver el manual «Parámetros globales».</aside></section><section id="modo"><h2>Bloques fijos u horas libres</h2><p>Es la primera decisión del panel, «Cómo se colocan las clases», y cambia el resto de los campos. Elegí según cómo sean tus clases.</p><ul><li>En bloques fijos — la tabla es una grilla pareja de lecciones (por ejemplo 50 minutos con 10 de descanso) y cada clase ocupa una o varias lecciones enteras. Es lo mejor cuando todas tus clases siguen el mismo compás.</li><li>Horas libres — cada clase se pone con su hora exacta de inicio y de fin, al minuto. Una clase de 1:30 p.m. a 4:40 p.m. y otra de 7:50 a 9:20 conviven sin problema.</li></ul><ol><li><strong>Abrí «Configurar horario» desde el menú «⋯» del editor</strong></li><li><strong>En «Cómo se colocan las clases», elegí «Horas libres»</strong> Los campos de abajo cambian solos: la hora de inicio y de fin pasan a ser selectores libres, y el descanso desaparece porque deja de tener sentido.</li><li><strong>Tocá «Guardar»</strong> Las clases que ya tenías conservan su hora de reloj; no se corren.</li></ol><p>En horas libres aparecen dos ajustes propios: «Líneas de referencia», cada cuánto se dibuja una línea horaria en la tabla (cada hora, por defecto), y «Ajuste al arrastrar», de a cuántos minutos se mueve un bloque cuando lo arrastrás o usás las flechas. Escribiendo la hora a mano podés poner cualquier minuto igual.</p><aside class="note note--warning">Volver a «bloques fijos» sí puede mover clases: las que no caigan justo en la grilla se estiran al bloque que ocupan. El panel te avisa cuántas se van a mover antes de guardar y podés cancelar.</aside></section><section id="dias-horas"><h2>Días visibles y franja horaria</h2><p class="demo-caption">Días activos y duración de cada lección</p><ul><li>Días visibles — qué columnas se dibujan. Tocá cada día para activarlo o desactivarlo; siempre queda al menos uno.</li><li>Hora de inicio — dónde arranca el día en la tabla.</li><li>Hora de fin — dónde termina.</li></ul><p>En un horario de bloques fijos, los dos desplegables no son una lista suelta de horas: solo ofrecen valores en los que la jornada cierra JUSTO al terminar un bloque, calculados con la duración de la lección y el descanso. Al lado de cada hora ves cuántos bloques por día deja, así elegís por resultado y no a ciegas.</p><p>En un horario de horas libres no hay grilla que cerrar exacta: ahí cada hora se elige con el selector propio —una rueda de horas y otra de minutos, más un campo para escribirla— y podés poner cualquier minuto.</p><aside class="note note--tip">En bloques fijos, si cambiás la duración de la lección, el descanso o la hora de inicio, la hora de fin se corre sola al valor válido más cercano y el panel te avisa cuál quedó. Así nunca sobran minutos sueltos al final del día.</aside><aside class="note note--warning">Cuidado al recortar: si desactivás un día o achicás la franja horaria, los bloques de curso que queden fuera se eliminan del horario. El panel te avisa antes de guardar.</aside></section><section id="duracion"><h2>Duración de lección y descanso</h2><ul><li>Duración de cada lección — cuántos minutos dura una fila de la tabla (30, 45, 50, 60, 90 min…).</li><li>Descanso entre bloques — minutos muertos entre una lección y la siguiente. En 0 min las filas quedan pegadas.</li></ul><p>Los dos determinan cuántas filas entran en la franja horaria. El texto de abajo del panel te muestra el resultado antes de guardar: «Con estos valores la tabla tendrá 12 bloques por día».</p><aside class="note note--info">En un horario de horas libres el descanso no aparece, y la duración de la lección cambia de nombre: pasa a ser «Duración de un bloque nuevo», o sea cuánto dura la clase que se crea al tocar un hueco de la tabla. Podés cambiarle la hora después, como siempre.</aside></section><section id="formato"><h2>Formato de hora</h2><p>Elegí entre «24 horas» (14:00) y «12 horas am/pm» (2:00 p.m.). Cambia cómo se leen las horas en toda la tabla, en la vista Lista y en los selectores de hora del formulario de curso.</p></section><section id="conflicto"><h2>Cuando dos cursos chocan</h2><p>Define qué hace la app cuando un curso cae encima de otro. «Reacomodar al hueco más cercano» lo corre solo al espacio libre más próximo; «Permitir que se solapen (lado a lado)» los deja encimados, repartidos a lo ancho de la columna.</p><aside class="note note--info">Se puede cambiar cuando quieras: aplica de ahí en adelante, no reacomoda retroactivamente lo que ya está puesto.</aside></section><section id="bloques-look"><h2>Cómo se ven los bloques</h2><p>Al final del mismo panel podés elegir qué datos adicionales se dibujan dentro de cada bloque, además del nombre y la hora: Sigla, Grupo, Profesor, Aula y Créditos.</p><ul><li>«Nunca» — los bloques muestran solo nombre y hora.</li><li>«Solo si el bloque tiene espacio» — aparecen únicamente en bloques de dos lecciones o más, para no amontonar texto.</li><li>«Siempre» — se muestran aunque el bloque sea chico.</li></ul><aside class="note note--warning">Esta sección se comporta distinta al resto del panel: se aplica al instante (no espera a «Guardar») y vale para TODOS tus horarios en este dispositivo, no solo para el que tenés abierto.</aside></section><!-- prerender:end --></div>
+  </body>
+</html>

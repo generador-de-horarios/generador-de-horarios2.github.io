@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-rmeNXE5eD8nz8GfUZX+EBYn3hdnYtd5F61kcXq1PCjs=' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://*.google-analytics.com https://www.googletagmanager.com; font-src 'self'; connect-src 'self' http://localhost:3000 https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; frame-src https://docs.google.com" />
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- theme-color por esquema, coherente con el toggle data-mode de uiStore. -->
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#08090C" />
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#F3F1F8" />
+    <!-- iOS lee el ícono de acá, NO del manifest (ignora los íconos SVG). -->
+    <link rel="apple-touch-icon" href="/apple-touch-icon-180x180.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Generador de horarios" />
+    <!-- Fuentes self-hosted (@font-face en style.css). Se precargan las del
+         subset latin, que son las que se usan siempre. -->
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/space-grotesk-latin.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/inter-latin.woff2" crossorigin />
+
+    <!--
+      TODO EL BLOQUE ENTRE `seo:start` y `seo:end` LO REGENERA EL POSTBUILD.
+
+      `tools/seo/emit-pages.mjs` lo reemplaza completo, en `index.html` y en cada
+      página derivada, a partir de `src/lib/seoMeta.ts` — esa es la fuente de
+      verdad del copy. Lo que hay acá abajo es el valor del home, y sirve de red
+      por si alguien corre `vite build` sin el postbuild; si difiere de
+      `seoMeta.ts`, gana `seoMeta.ts`.
+
+      Los marcadores son comentarios y no atributos porque el reemplazo tiene que
+      ser de un bloque entero: parchear tag por tag con regex es exactamente cómo
+      se termina con un `og:description` del home en una página de ayuda.
+
+      `https://generador-de-horarios.coldideas.com` lo sustituye Vite en el build (ver `.env`). Ninguna de
+      estas URLs puede ser relativa: `og:image` relativa es la causa nº1 de
+      tarjeta social sin imagen.
+    -->
+    <!-- seo:start -->
+    <title>Opciones generales · Ayuda — Generador de horarios</title>
+    <meta name="description" content="Modo claro u oscuro, fondo animado, medición de uso y dónde encontrar estas opciones." />
+    <link rel="canonical" href="https://generador-de-horarios.coldideas.com/ayuda/apariencia" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Generador de horarios" />
+    <meta property="og:locale" content="es_LA" />
+    <meta property="og:url" content="https://generador-de-horarios.coldideas.com/ayuda/apariencia" />
+    <meta property="og:title" content="Opciones generales" />
+    <meta property="og:description" content="Modo claro u oscuro, fondo animado, medición de uso y dónde encontrar estas opciones." />
+    <meta property="og:image" content="https://generador-de-horarios.coldideas.com/og-cover-v1.png" />
+    <meta property="og:image:secure_url" content="https://generador-de-horarios.coldideas.com/og-cover-v1.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Un horario semanal de clases con los cursos en bloques de color, en la app Generador de horarios." />
+    <meta property="og:image" content="https://generador-de-horarios.coldideas.com/og-square-v1.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="1200" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Opciones generales" />
+    <meta name="twitter:description" content="Modo claro u oscuro, fondo animado, medición de uso y dónde encontrar estas opciones." />
+    <meta name="twitter:image" content="https://generador-de-horarios.coldideas.com/og-cover-v1.png" />
+    <meta name="twitter:image:alt" content="Un horario semanal de clases con los cursos en bloques de color, en la app Generador de horarios." />
+    <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"TechArticle","@id":"https://generador-de-horarios.coldideas.com/ayuda/apariencia#article","headline":"Opciones generales","description":"Modo claro u oscuro, fondo animado, medición de uso y dónde encontrar estas opciones.","url":"https://generador-de-horarios.coldideas.com/ayuda/apariencia","inLanguage":"es","isPartOf":{"@type":"WebSite","name":"Generador de horarios","url":"https://generador-de-horarios.coldideas.com/"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://generador-de-horarios.coldideas.com/"},{"@type":"ListItem","position":2,"name":"Ayuda","item":"https://generador-de-horarios.coldideas.com/ayuda"},{"@type":"ListItem","position":3,"name":"Opciones generales","item":"https://generador-de-horarios.coldideas.com/ayuda/apariencia"}]}]}</script>
+    <!-- seo:end -->
+    <script type="module" crossorigin src="/assets/index-CWuDe9Sp.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-Dq2K2ADp.css">
+  <link rel="manifest" href="/manifest.webmanifest"></head>
+  <body>
+    <div id="app"></div>
+    <!--
+      Contenido estático que hornea el postbuild (`#app:not(:empty) + #prerender`
+      lo esconde en cuanto Vue monta, ver `style.css`). Es lo ÚNICO que ve un
+      crawler que no ejecuta JavaScript, y lo primero que ve un humano con la red
+      lenta. Va vacío en el fuente a propósito: el copy vive en `seoMeta.ts` y en
+      `helpContent.ts`, duplicarlo acá sería una segunda fuente de verdad.
+
+      Reemplaza al `<h1 class="sr-only">` que estaba acá: describía dos pantallas
+      en una sola oración, se repetía en todas las rutas y DUPLICABA el `<h1>`
+      que cada vista ya renderiza (`HomeView` "Mis horarios", `HelpView` el
+      título del tema…).
+    -->
+    <div id="prerender"><!-- prerender:start --><h1>Opciones generales</h1><p>Modo claro u oscuro, fondo animado, medición de uso y dónde encontrar estas opciones.</p><section id="tema"><h2>Modo claro y oscuro</h2><p class="demo-caption">El mismo horario en modo oscuro y en modo claro</p><ol><li><strong>Abrí el menú «⋯» de la barra superior y tocá «Modo oscuro»</strong> Cada toque alterna entre modo claro y modo oscuro; el tilde muestra cuál está activo. El cambio es inmediato, se aplica a toda la app y el menú queda abierto por si querés ajustar el fondo también.</li><li><strong>Listo, queda guardado</strong> La preferencia se recuerda en este dispositivo: la próxima vez que abras la app arranca como la dejaste.</li></ol><aside class="note note--info">Los colores de tus cursos son los mismos en los dos modos; lo que cambia es el fondo y el color del texto de la interfaz.</aside></section><section id="fondo"><h2>Fondo animado</h2><p>Detrás de la app hay un fondo con manchas de color que se mueven muy despacio. El ítem «Fondo animado» del menú «⋯» de la barra superior lo pausa o lo reactiva.</p><aside class="note note--tip">Pausarlo deja el fondo quieto pero igual de lindo, y le saca trabajo al equipo — útil en máquinas lentas o si querés estirar la batería.</aside><p>Si tu sistema operativo está configurado para reducir el movimiento, la app respeta ese ajuste sola, sin que tengas que tocar nada.</p></section><section id="medicion"><h2>Compartir uso anónimo</h2><p>El ítem «Compartir uso anónimo» del menú «⋯» controla si la app manda estadísticas de uso. Sirve para saber qué partes se usan y cuáles confunden, y así decidir qué mejorar.</p><ul><li>Se envían acciones: que creaste un horario, que arrastraste un bloque, que exportaste en PDF.</li><li>NO se envía nada de lo que escribís: ni nombres de cursos, ni de horarios, ni profesores, aulas o notas.</li><li>Tus horarios siguen guardados solo en este dispositivo, como siempre.</li></ul><ol><li><strong>Abrí el menú «⋯» y tocá «Compartir uso anónimo»</strong> El tilde indica que está activado. Tocarlo lo apaga; el menú queda abierto.</li><li><strong>Listo, se respeta al instante</strong> Al apagarlo la app deja de enviar en ese mismo momento y descarta lo que tuviera pendiente. La preferencia se recuerda en este dispositivo.</li></ol><aside class="note note--tip">Sin conexión no se pierde nada ni se manda nada de inmediato: queda guardado en el dispositivo y se envía recién cuando volvés a tener internet.</aside></section><section id="donde"><h2>Dónde están estos botones</h2><dl><dt>Modo oscuro</dt><dd><em>Menú «⋯» de la barra superior</em> — Alterna entre modo claro y oscuro. El tilde indica que el modo oscuro está activo.</dd><dt>Fondo animado</dt><dd><em>Menú «⋯» de la barra superior</em> — Pausa o reactiva el fondo animado. El tilde indica que está andando.</dd><dt>Compartir uso anónimo</dt><dd><em>Menú «⋯» de la barra superior</em> — Activa o desactiva el envío de estadísticas de uso. El tilde indica que está activado. Si no ves este ítem, la app no está midiendo nada.</dd></dl><aside class="note note--info">El menú «⋯» es el mismo en todas las pantallas y tamaños: siempre en el extremo derecho de la barra superior.</aside></section><!-- prerender:end --></div>
+  </body>
+</html>

@@ -1,0 +1,21 @@
+# GitHub Pages no permite mandar cabeceras propias (no hay X-Robots-Tag), así
+# que este archivo es la única palanca a nivel de sitio.
+#
+# /editor/ y /share/ quedan fuera del índice por PRIVACIDAD, no por SEO: son
+# horarios de personas. Ojo con el alcance real de esto — Disallow evita el
+# rastreo, pero no garantiza que una URL ya enlazada desde otro lado se
+# desindexe. La otra mitad de la defensa es el `noindex` del 404.html que emite
+# `tools/seo/emit-pages.mjs`, que es lo que Pages sirve para esas rutas.
+#
+# /generador, /cuenta y /login están desactivadas de la UI en este MVP (ver
+# "Alcance" en CLAUDE.md): no tiene sentido gastar presupuesto de rastreo ahí.
+
+User-agent: *
+Allow: /
+Disallow: /editor/
+Disallow: /share/
+Disallow: /generador
+Disallow: /cuenta
+Disallow: /login
+
+Sitemap: https://generador-de-horarios.coldideas.com/sitemap.xml

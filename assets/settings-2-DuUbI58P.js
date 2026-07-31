@@ -1,4 +1,4 @@
-import{c}from"./index-CN-apKqI.js";/**
+import{c}from"./index-CWuDe9Sp.js";/**
  * @license @lucide/vue v1.24.0 - ISC
  *
  * This source code is licensed under the ISC license.
