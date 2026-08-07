@@ -21,6 +21,13 @@
          pero el DNS/TLS de Google Tag Manager conviene resolverlos ya: para
          cuando el idle callback dispare, la conexión ya está lista. -->
     <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
+    <!-- Sin JavaScript, el esqueleto de carga (`#shell`) sería una app fantasma
+         que nunca termina de cargar, con la prosa de `#prerender` empujada
+         abajo del fold — justo el escenario para el que existe `#prerender`.
+         Apagarlo devuelve exactamente el comportamiento anterior. Un `<style>`
+         dentro de `<noscript>` es válido en el `<head>`, y la CSP lo permite
+         (`style-src 'self' 'unsafe-inline'`). -->
+    <noscript><style>#shell{display:none}</style></noscript>
 
     <!--
       TODO EL BLOQUE ENTRE `seo:start` y `seo:end` LO REGENERA EL POSTBUILD.
@@ -67,15 +74,30 @@
     <meta name="twitter:image:alt" content="Un horario semanal de clases con los cursos en bloques de color, en la app Generador de horarios." />
     <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"TechArticle","@id":"https://generador-de-horarios.coldideas.com/ayuda/globales#article","headline":"Parámetros globales","description":"La plantilla con la que nacen tus próximos horarios, y en qué se diferencia de los parámetros de un horario.","url":"https://generador-de-horarios.coldideas.com/ayuda/globales","inLanguage":"es","isPartOf":{"@type":"WebSite","name":"Generador de horarios","url":"https://generador-de-horarios.coldideas.com/"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://generador-de-horarios.coldideas.com/"},{"@type":"ListItem","position":2,"name":"Ayuda","item":"https://generador-de-horarios.coldideas.com/ayuda"},{"@type":"ListItem","position":3,"name":"Parámetros globales","item":"https://generador-de-horarios.coldideas.com/ayuda/globales"}]}]}</script>
     <!-- seo:end -->
-    <script type="module" crossorigin src="/assets/index-CLmgcGAC.js"></script>
-    <link rel="modulepreload" crossorigin href="/assets/vendor-vue-38pOCikE.js">
+    <script type="module" crossorigin src="/assets/index-B4y2t_Jh.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/vendor-vue-Cn43xkxK.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-db-SYSzWNrB.js">
-    <link rel="stylesheet" crossorigin href="/assets/index-BzWrRjRv.css">
+    <link rel="stylesheet" crossorigin href="/assets/index-Dzb4Cjo-.css">
   <link rel="manifest" href="/manifest.webmanifest"></head>
   <body>
     <div id="app"></div>
     <!--
-      Contenido estático que hornea el postbuild (`#app:not(:empty) + #prerender`
+      Esqueleto de la app, horneado por el postbuild (`homeShellHtml` +
+      `HomeSkeleton.vue`, solo en el home). Es lo que se ve entre "el CSS pintó"
+      y "Vue montó" — el hueco más largo del arranque, porque el bundle pesa
+      ~590 KB. Wireframe gris a propósito: cero texto, cero encabezados, cero
+      imágenes. Es DECORACIÓN de carga, no contenido: por eso `aria-hidden`, y
+      por eso nada acá compite con el `<h1>` indexable de `#prerender`.
+
+      Hermano de `#prerender` y NO hijo suyo: `#prerender` está estilado como
+      prosa (`max-width:70ch`), que es exactamente lo contrario de lo que
+      necesita un shell a ancho completo. Los dos se esconden con la misma
+      regla `#app:not(:empty) ~ …` de `style.css` (hermano GENERAL: con `+`
+      bastaba meter un nodo en el medio para romperla en silencio).
+    -->
+    <div id="shell" aria-hidden="true"><!-- shell:start --><!-- shell:end --></div>
+    <!--
+      Contenido estático que hornea el postbuild (`#app:not(:empty) ~ #prerender`
       lo esconde en cuanto Vue monta, ver `style.css`). Es lo ÚNICO que ve un
       crawler que no ejecuta JavaScript, y lo primero que ve un humano con la red
       lenta. Va vacío en el fuente a propósito: el copy vive en `seoMeta.ts` y en
@@ -86,6 +108,6 @@
       que cada vista ya renderiza (`HomeView` "Mis horarios", `HelpView` el
       título del tema…).
     -->
-    <div id="prerender"><!-- prerender:start --><h1>Parámetros globales</h1><p>La plantilla con la que nacen tus próximos horarios, y en qué se diferencia de los parámetros de un horario.</p><section id="plantilla"><h2>La plantilla de horarios nuevos</h2><p>Si todos tus horarios arrancan igual —mismos días, misma franja, lecciones de 50 minutos— no hace falta reconfigurarlos uno por uno: definí esos valores una vez y todos los horarios que crees después nacen así.</p><ol><li><strong>Tocá el menú «⋯» del extremo derecho de la barra superior</strong> Está en todas las pantallas de la app, siempre en el mismo lugar. Elegí «Config. de horarios nuevos».</li><li><strong>Ajustá los valores y tocá «Guardar»</strong> Son los mismos campos que los de un horario: cómo se colocan las clases (dos botones: bloques fijos u horas libres), días visibles, hora de inicio y fin, duración de lección, descanso, formato de hora y modo de conflicto.</li></ol><aside class="note note--tip">Si tus clases casi nunca entran en una grilla pareja, elegí «Horas libres» acá una sola vez: todos los horarios que crees después nacen así y no vas a necesitar el atajo del formulario de curso.</aside><aside class="note note--tip">Lo mismo con los días: si siempre llevás sábado, marcalo acá en «Días visibles» y todos tus horarios nuevos ya lo traen. La app también te lo ofrece sola, en el aviso, a partir de la segunda vez que agregás ese día desde el formulario de un curso.</aside><dl><dt>Config. de horarios nuevos</dt><dd><em>Barra superior · dentro del menú «⋯»</em> — Abre la configuración por defecto de los horarios nuevos.</dd><dt>Menú ⋯</dt><dd><em>Barra superior · extremo derecho, siempre</em> — Reúne las preferencias y acciones globales; es igual en todas las pantallas y tamaños.</dd></dl></section><section id="diferencia"><h2>En qué se diferencia de los parámetros de un horario</h2><p>Son dos paneles casi idénticos, pero con alcances distintos. La diferencia está en desde qué menú los abriste.</p><ul><li>Menú «⋯» de la BARRA SUPERIOR (parámetros globales) — es una plantilla. Solo afecta a los horarios que crees de ahora en adelante.</li><li>Menú «⋯» del EDITOR, junto al nombre del horario (parámetros del horario) — afecta a ese horario y solo a ese, ya mismo.</li></ul><aside class="note note--warning">Cambiar la plantilla NO toca los horarios que ya existen: siguen exactamente como estaban. Para modificar uno ya creado, abrilo y usá su menú «⋯» → «Configurar horario».</aside></section><section id="otros"><h2>Otros ajustes que valen para todo</h2><p>Hay dos ajustes más que se guardan en el dispositivo y valen para todos tus horarios, aunque no vivan en este panel:</p><ul><li>«Cómo se ven los bloques» (qué datos adicionales muestra cada bloque) — está al final del panel de parámetros de cualquier horario.</li><li>Modo claro/oscuro y fondo animado — ver el manual «Opciones generales».</li></ul></section><!-- prerender:end --></div>
+    <div id="prerender"><!-- prerender:start --><h1>Parámetros globales</h1><p>La plantilla con la que nacen tus próximos horarios, y en qué se diferencia de los parámetros de un horario.</p><section id="plantilla"><h2>La plantilla de horarios nuevos</h2><p>Si todos tus horarios arrancan igual —mismos días, misma franja, lecciones de 50 minutos— no hace falta reconfigurarlos uno por uno: definí esos valores una vez y todos los horarios que crees después nacen así.</p><ol><li><strong>Tocá el menú «⋯» del extremo derecho de la barra superior</strong> Está en todas las pantallas de la app, siempre en el mismo lugar. Elegí «Config. de horarios nuevos».</li><li><strong>Ajustá los valores y tocá «Guardar»</strong> Son los mismos campos que los de un horario: cómo se colocan las clases (dos botones: bloques fijos u horas libres), días visibles, hora de inicio y fin, duración de lección, descanso, formato de hora y modo de conflicto.</li></ol><aside class="note note--tip">Si tus clases casi nunca entran en una grilla pareja, elegí «Horas libres» acá una sola vez: todos los horarios que crees después nacen así y no vas a necesitar el atajo del formulario de curso.</aside><aside class="note note--tip">Lo mismo con los días: si siempre llevás sábado, marcalo acá en «Días visibles» y todos tus horarios nuevos ya lo traen. La app también te lo ofrece sola, en el aviso, a partir de la segunda vez que agregás ese día desde el formulario de un curso.</aside><dl><dt>Config. de horarios nuevos</dt><dd><em>Barra superior · dentro del menú «⋯»</em> — Abre la configuración por defecto de los horarios nuevos.</dd><dt>Menú ⋯</dt><dd><em>Barra superior · extremo derecho, siempre</em> — Reúne las preferencias y acciones globales; es igual en todas las pantallas y tamaños.</dd></dl></section><section id="diferencia"><h2>En qué se diferencia de los parámetros de un horario</h2><p>Son dos paneles casi idénticos, pero con alcances distintos. La diferencia está en desde qué menú los abriste.</p><ul><li>Menú «⋯» de la BARRA SUPERIOR (parámetros globales) — es una plantilla. Solo afecta a los horarios que crees de ahora en adelante.</li><li>Menú «⋯» del EDITOR, junto al nombre del horario (parámetros del horario) — afecta a ese horario y solo a ese, ya mismo.</li></ul><aside class="note note--warning">Cambiar la plantilla NO toca los horarios que ya existen: siguen exactamente como estaban. Para modificar uno ya creado, abrilo y usá su menú «⋯» → «Configurar horario».</aside></section><section id="otros"><h2>Otros ajustes que valen para todo</h2><p>Hay dos ajustes más que se guardan en el dispositivo y valen para todos tus horarios, aunque no vivan en este panel:</p><ul><li>«Cómo se ven los bloques» (qué datos adicionales muestra cada bloque) — está al final del panel de parámetros de cualquier horario.</li><li>Modo claro/oscuro y efectos visuales — ver el manual «Opciones generales».</li></ul></section><!-- prerender:end --></div>
   </body>
 </html>

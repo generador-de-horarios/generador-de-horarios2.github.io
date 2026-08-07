@@ -21,6 +21,13 @@
          pero el DNS/TLS de Google Tag Manager conviene resolverlos ya: para
          cuando el idle callback dispare, la conexión ya está lista. -->
     <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
+    <!-- Sin JavaScript, el esqueleto de carga (`#shell`) sería una app fantasma
+         que nunca termina de cargar, con la prosa de `#prerender` empujada
+         abajo del fold — justo el escenario para el que existe `#prerender`.
+         Apagarlo devuelve exactamente el comportamiento anterior. Un `<style>`
+         dentro de `<noscript>` es válido en el `<head>`, y la CSP lo permite
+         (`style-src 'self' 'unsafe-inline'`). -->
+    <noscript><style>#shell{display:none}</style></noscript>
 
     <!--
       TODO EL BLOQUE ENTRE `seo:start` y `seo:end` LO REGENERA EL POSTBUILD.
@@ -67,15 +74,30 @@
     <meta name="twitter:image:alt" content="Un horario semanal de clases con los cursos en bloques de color, en la app Generador de horarios." />
     <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"TechArticle","@id":"https://generador-de-horarios.coldideas.com/ayuda#article","headline":"Centro de ayuda","description":"Guías paso a paso para armar un horario, ajustar los parámetros de un horario o de la app, y cambiar la apariencia. Con ilustraciones de cada gesto.","url":"https://generador-de-horarios.coldideas.com/ayuda","inLanguage":"es","isPartOf":{"@type":"WebSite","name":"Generador de horarios","url":"https://generador-de-horarios.coldideas.com/"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Inicio","item":"https://generador-de-horarios.coldideas.com/"},{"@type":"ListItem","position":2,"name":"Ayuda","item":"https://generador-de-horarios.coldideas.com/ayuda"}]}]}</script>
     <!-- seo:end -->
-    <script type="module" crossorigin src="/assets/index-CLmgcGAC.js"></script>
-    <link rel="modulepreload" crossorigin href="/assets/vendor-vue-38pOCikE.js">
+    <script type="module" crossorigin src="/assets/index-B4y2t_Jh.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/vendor-vue-Cn43xkxK.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-db-SYSzWNrB.js">
-    <link rel="stylesheet" crossorigin href="/assets/index-BzWrRjRv.css">
+    <link rel="stylesheet" crossorigin href="/assets/index-Dzb4Cjo-.css">
   <link rel="manifest" href="/manifest.webmanifest"></head>
   <body>
     <div id="app"></div>
     <!--
-      Contenido estático que hornea el postbuild (`#app:not(:empty) + #prerender`
+      Esqueleto de la app, horneado por el postbuild (`homeShellHtml` +
+      `HomeSkeleton.vue`, solo en el home). Es lo que se ve entre "el CSS pintó"
+      y "Vue montó" — el hueco más largo del arranque, porque el bundle pesa
+      ~590 KB. Wireframe gris a propósito: cero texto, cero encabezados, cero
+      imágenes. Es DECORACIÓN de carga, no contenido: por eso `aria-hidden`, y
+      por eso nada acá compite con el `<h1>` indexable de `#prerender`.
+
+      Hermano de `#prerender` y NO hijo suyo: `#prerender` está estilado como
+      prosa (`max-width:70ch`), que es exactamente lo contrario de lo que
+      necesita un shell a ancho completo. Los dos se esconden con la misma
+      regla `#app:not(:empty) ~ …` de `style.css` (hermano GENERAL: con `+`
+      bastaba meter un nodo en el medio para romperla en silencio).
+    -->
+    <div id="shell" aria-hidden="true"><!-- shell:start --><!-- shell:end --></div>
+    <!--
+      Contenido estático que hornea el postbuild (`#app:not(:empty) ~ #prerender`
       lo esconde en cuanto Vue monta, ver `style.css`). Es lo ÚNICO que ve un
       crawler que no ejecuta JavaScript, y lo primero que ve un humano con la red
       lenta. Va vacío en el fuente a propósito: el copy vive en `seoMeta.ts` y en
@@ -86,6 +108,6 @@
       que cada vista ya renderiza (`HomeView` "Mis horarios", `HelpView` el
       título del tema…).
     -->
-    <div id="prerender"><!-- prerender:start --><h1>Centro de ayuda</h1><p>Cuatro guías cubren todo lo que necesitás para usar el generador de horarios: cómo crear un horario, qué hace cada parámetro de un horario, qué configuración se aplica a los horarios nuevos y cómo cambiar la apariencia de la app.</p><ul><li><a href="/ayuda/crear"><strong>Crear un horario</strong></a> — De la semana en blanco al horario completo: agregar cursos, repetirlos en varios días, cargar horas distintas por día y moverlos.</li><li><a href="/ayuda/horario-params"><strong>Parámetros del horario</strong></a> — Bloques fijos u horas libres, días visibles, franja horaria, formato de hora y modo de conflicto — de un horario en particular.</li><li><a href="/ayuda/globales"><strong>Parámetros globales</strong></a> — La plantilla con la que nacen tus próximos horarios, y en qué se diferencia de los parámetros de un horario.</li><li><a href="/ayuda/apariencia"><strong>Opciones generales</strong></a> — Modo claro u oscuro, fondo animado, medición de uso y dónde encontrar estas opciones.</li></ul><!-- prerender:end --></div>
+    <div id="prerender"><!-- prerender:start --><h1>Centro de ayuda</h1><p>Cuatro guías cubren todo lo que necesitás para usar el generador de horarios: cómo crear un horario, qué hace cada parámetro de un horario, qué configuración se aplica a los horarios nuevos y cómo cambiar la apariencia de la app.</p><ul><li><a href="/ayuda/crear"><strong>Crear un horario</strong></a> — De la semana en blanco al horario completo: agregar cursos, repetirlos en varios días, cargar horas distintas por día y moverlos.</li><li><a href="/ayuda/horario-params"><strong>Parámetros del horario</strong></a> — Bloques fijos u horas libres, días visibles, franja horaria, formato de hora y modo de conflicto — de un horario en particular.</li><li><a href="/ayuda/globales"><strong>Parámetros globales</strong></a> — La plantilla con la que nacen tus próximos horarios, y en qué se diferencia de los parámetros de un horario.</li><li><a href="/ayuda/apariencia"><strong>Opciones generales</strong></a> — Modo claro u oscuro, efectos visuales, medición de uso y dónde encontrar estas opciones.</li></ul><!-- prerender:end --></div>
   </body>
 </html>

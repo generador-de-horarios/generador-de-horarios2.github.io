@@ -21,6 +21,13 @@
          pero el DNS/TLS de Google Tag Manager conviene resolverlos ya: para
          cuando el idle callback dispare, la conexión ya está lista. -->
     <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
+    <!-- Sin JavaScript, el esqueleto de carga (`#shell`) sería una app fantasma
+         que nunca termina de cargar, con la prosa de `#prerender` empujada
+         abajo del fold — justo el escenario para el que existe `#prerender`.
+         Apagarlo devuelve exactamente el comportamiento anterior. Un `<style>`
+         dentro de `<noscript>` es válido en el `<head>`, y la CSP lo permite
+         (`style-src 'self' 'unsafe-inline'`). -->
+    <noscript><style>#shell{display:none}</style></noscript>
 
     <!--
       TODO EL BLOQUE ENTRE `seo:start` y `seo:end` LO REGENERA EL POSTBUILD.
@@ -43,15 +50,30 @@
     <title>Página no encontrada — Generador de horarios</title>
     <meta name="robots" content="noindex,follow" />
     <!-- seo:end -->
-    <script type="module" crossorigin src="/assets/index-CLmgcGAC.js"></script>
-    <link rel="modulepreload" crossorigin href="/assets/vendor-vue-38pOCikE.js">
+    <script type="module" crossorigin src="/assets/index-B4y2t_Jh.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/vendor-vue-Cn43xkxK.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-db-SYSzWNrB.js">
-    <link rel="stylesheet" crossorigin href="/assets/index-BzWrRjRv.css">
+    <link rel="stylesheet" crossorigin href="/assets/index-Dzb4Cjo-.css">
   <link rel="manifest" href="/manifest.webmanifest"></head>
   <body>
     <div id="app"></div>
     <!--
-      Contenido estático que hornea el postbuild (`#app:not(:empty) + #prerender`
+      Esqueleto de la app, horneado por el postbuild (`homeShellHtml` +
+      `HomeSkeleton.vue`, solo en el home). Es lo que se ve entre "el CSS pintó"
+      y "Vue montó" — el hueco más largo del arranque, porque el bundle pesa
+      ~590 KB. Wireframe gris a propósito: cero texto, cero encabezados, cero
+      imágenes. Es DECORACIÓN de carga, no contenido: por eso `aria-hidden`, y
+      por eso nada acá compite con el `<h1>` indexable de `#prerender`.
+
+      Hermano de `#prerender` y NO hijo suyo: `#prerender` está estilado como
+      prosa (`max-width:70ch`), que es exactamente lo contrario de lo que
+      necesita un shell a ancho completo. Los dos se esconden con la misma
+      regla `#app:not(:empty) ~ …` de `style.css` (hermano GENERAL: con `+`
+      bastaba meter un nodo en el medio para romperla en silencio).
+    -->
+    <div id="shell" aria-hidden="true"><!-- shell:start --><!-- shell:end --></div>
+    <!--
+      Contenido estático que hornea el postbuild (`#app:not(:empty) ~ #prerender`
       lo esconde en cuanto Vue monta, ver `style.css`). Es lo ÚNICO que ve un
       crawler que no ejecuta JavaScript, y lo primero que ve un humano con la red
       lenta. Va vacío en el fuente a propósito: el copy vive en `seoMeta.ts` y en
